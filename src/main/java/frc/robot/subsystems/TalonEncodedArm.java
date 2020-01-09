@@ -11,9 +11,9 @@ import frc.robot.RobotMap;
 import frc.robot.Robot.Direction;
 import frc.robot.Robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX; 
+//import com.ctre.phoenix.motorcontrol.ControlMode; all deprecated
+//import com.ctre.phoenix.motorcontrol.NeutralMode;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX; 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -26,8 +26,8 @@ public class TalonEncodedArm extends Subsystem {
   private static final int ENCODER_CONFIG_TIMEOUT = 10;
   private static final int TALONRSX_TIMEOUT = 10;
 
-  private WPI_TalonSRX motor1;
-  private WPI_TalonSRX motor2;
+  //private WPI_TalonSRX motor1;
+  //private WPI_TalonSRX motor2;
   private double velocity;
   private int count = 0;
   private int logMsgInterval = 50;
@@ -44,15 +44,15 @@ public class TalonEncodedArm extends Subsystem {
     velocity = 0;
 
     // assume that motor1 is connected to encoder
-    motor1 = new WPI_TalonSRX(RobotMap.TalonMotorCanId1);
-    motor2= new WPI_TalonSRX(RobotMap.TalonMotorCanId2); 
+    //motor1 = new WPI_TalonSRX(RobotMap.TalonMotorCanId1);
+    //motor2= new WPI_TalonSRX(RobotMap.TalonMotorCanId2); 
    
-    motor1.configFactoryDefault();
-    motor2.configFactoryDefault();
+    //motor1.configFactoryDefault(); both deprecated
+    //motor2.configFactoryDefault();
 
     // only 1 controller (motor1) is wired to the encoder, so we have motor2
     // follow motor1 to keep it moving at the same speed
-    motor2.follow(motor1);
+    //motor2.follow(motor1); 
     
     /* Set the peak and nominal outputs */
     /* gos doesn't call these functions */
@@ -63,15 +63,15 @@ public class TalonEncodedArm extends Subsystem {
 
     // this could be either true or false, we have to determine
     // how it is confgured
-    motor1.setInverted(false);
-    motor2.setInverted(false);
+    //motor1.setInverted(false);
+    //motor2.setInverted(false);
 
     topLimit = new DigitalInput(RobotMap.ArmTopLimitSwitchId);
     bottomLimit = new DigitalInput(RobotMap.ArmBottomLimitSwitchId);
 
 
-    motor1.setNeutralMode(NeutralMode.Brake);
-    motor2.setNeutralMode(NeutralMode.Brake);
+    //motor1.setNeutralMode(NeutralMode.Brake);
+    //motor2.setNeutralMode(NeutralMode.Brake);
 
     Robot.Log("Arm Talon is initialized");
   }
