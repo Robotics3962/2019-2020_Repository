@@ -11,11 +11,7 @@ import frc.robot.commands.ElevatorUpCmd;
 import frc.robot.commands.ElevatorDownCmd;
 import frc.robot.commands.ShootBallCmd;
 import frc.robot.commands.GrabBallCmd;
-//import frc.robot.commands.LockWristCmd;
-//import frc.robot.commands.UnlockWristCmd;
-import frc.robot.commands.WristLockPosDownCmd;
-import frc.robot.commands.WristLockPosUpCmd;
-import frc.robot.commands.DumpInfoCmd;
+
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -43,7 +39,7 @@ public class OI {
     JoystickButton driveButtonStart = new JoystickButton(driveJoystick, RobotMap.JoystickButtonStart);
 
     // map buttons to commands on the joystick that drives the robot
-    driveButtonA.whileHeld(new DumpInfoCmd());
+    
     
 
     // second joystick I'm calling it operational - no command mapping yet
@@ -62,8 +58,8 @@ public class OI {
     //opButtonB.whenPressed(new UnlockWristCmd());
     opButtonBack.whileHeld(new GrabBallCmd());
     opButtonStart.whileHeld(new ShootBallCmd());                         
-    opButtonX.whenPressed(new WristLockPosDownCmd());
-    opButtonY.whenPressed(new WristLockPosUpCmd());
+    //opButtonX.whenPressed(new WristLockPosDownCmd()); not deleted as to show these two buttons are available for assigning
+    //opButtonY.whenPressed(new WristLockPosUpCmd());
     opButtonRS.whileHeld(new ElevatorUpCmd());
     opButtonLS.whileHeld(new ElevatorDownCmd());
    
