@@ -14,8 +14,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.TalonEncodedArm;
-import frc.robot.subsystems.TalonEncodedWrist;
 import frc.robot.subsystems.PIDElevator;
 import frc.robot.subsystems.DiffDriveBase;
 import frc.robot.subsystems.Intake;
@@ -36,8 +34,6 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   // subsystems
-  public static TalonEncodedArm encodedArmTalon = null;
-  public static TalonEncodedWrist encodedWristTalon = null;
   public static PIDElevator pidElevator = null;
   public static DiffDriveBase diffDriveBase = null;
   public static Intake intake = null;
@@ -104,8 +100,6 @@ public class Robot extends TimedRobot {
 
     // create all subsystems
     diffDriveBase = new DiffDriveBase();
-    encodedWristTalon = new TalonEncodedWrist();
-    encodedArmTalon = new TalonEncodedArm();
     pidElevator = new PIDElevator();
     intake = new Intake();
     
