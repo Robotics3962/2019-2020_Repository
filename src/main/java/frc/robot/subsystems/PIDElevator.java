@@ -71,9 +71,13 @@ public class PIDElevator extends PIDSubsystem {
     // or call stopmotor()?
     setSpeed(RobotMap.ElevatorStopSpeed);
   }
-	
+  
+  /*
+   * removed to allow compilation and to be "fixed" later? 
+   * This does need to be restored eventually for elevator use!!!!
+   * 
   public void Down() {
-    if (atLowerLimit() || Robot.encodedArmTalon.atLowerLimit()){ //when the arm hits the liit switcht he elevator needs to be stopped as well
+   // if (atLowerLimit() || Robot.encodedArmTalon.atLowerLimit()){ //when the arm hits the liit switcht he elevator needs to be stopped as well
       Stop();
     } 
     else {
@@ -81,7 +85,7 @@ public class PIDElevator extends PIDSubsystem {
      setSpeed(RobotMap.ElevatorDownSpeed);
     }
   }
-
+*/
   public boolean atUpperLimit(){
     boolean atLimit = false;
     atLimit = topLimit.get();
