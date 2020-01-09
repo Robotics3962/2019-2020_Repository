@@ -66,13 +66,7 @@ public class OI {
 
   }
 
-  public double getOperWristControl(){
-    return operationJoyStick.getY();
-  }
-
-  public double getOperArmControl(){
-    return operationJoyStick.getRawAxis(5); // not sure this is right number
-  }
+  
   
   public double getLeftThrottle() {
 		return driveJoystick.getY(); // Laika needs negative, Belka is positive
