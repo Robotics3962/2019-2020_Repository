@@ -180,8 +180,8 @@ public class Robot extends TimedRobot {
         
         DiffDriveBase.setSpeedAndRotation(RobotMap.autonomousSSF, RobotMap.autonomousRSF);
       }
-
     }
+   }
 
 
 
