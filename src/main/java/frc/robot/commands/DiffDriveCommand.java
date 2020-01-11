@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.DiffDriveBase;
 
 import java.lang.Math;
 
@@ -35,13 +36,13 @@ public class DiffDriveCommand extends Command {
     double rotation = Robot.m_oi.getRightRotation() * 1;
     double scaledSpeed;
     double scaledRotation;
-      
+
     scaledSpeed = speed * RobotMap.SpeedScaleFactor;
     scaledRotation = rotation * RobotMap.RotationScaleFactor;
-    //scaledSpeed = scaleValue(speed, RobotMap.SpeedScaleFactor);
-    //scaledRotation = scaleValue(rotation, RobotMap.RotationScaleFactor);
+    // scaledSpeed = scaleValue(speed, RobotMap.SpeedScaleFactor);
+    // scaledRotation = scaleValue(rotation, RobotMap.RotationScaleFactor);
 
-    Robot.diffDriveBase.setSpeedAndRotation(scaledRotation, scaledSpeed);//orig Scaledspeed, ScaledRotation
+    DiffDriveBase.setSpeedAndRotation(scaledRotation, scaledSpeed);// orig Scaledspeed, ScaledRotation
   }
 
   // Make this return true when this Command no longer needs to run execute()

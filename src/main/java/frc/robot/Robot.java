@@ -162,6 +162,9 @@ public class Robot extends TimedRobot {
     }
   }
 
+
+private double startTime = Timer.getFPGATimestamp();
+
   /**
    * This function is called periodically during autonomous.
    */
@@ -173,14 +176,13 @@ public class Robot extends TimedRobot {
     //IMPORTANT: this timer starts when the ROBOT turns on, not when autonomous is activated
     double time = Timer.getFPGATimestamp();
 
-    //should work so that after autonomous is initializd timer starts
-    if (autonomousBegin = true){
+    
 
-      if (time < 15) {
+      
         
         DiffDriveBase.setSpeedAndRotation(RobotMap.autonomousSSF, RobotMap.autonomousRSF);
-      }
-    }
+      
+    
    }
 
 
