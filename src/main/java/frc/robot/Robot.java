@@ -14,10 +14,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.PIDElevator;
 import frc.robot.subsystems.DiffDriveBase;
-import frc.robot.subsystems.Intake;
-import frc.robot.utils.CollectorPosition;
+import frc.robot.commands.Autonomous;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,7 +28,7 @@ public class Robot extends TimedRobot {
   //public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
-  Command m_autonomousCommand;
+  Command m_autonomousCommand = ;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   // subsystems
@@ -45,16 +43,7 @@ public class Robot extends TimedRobot {
   public static UsbCamera camera1;
   public static UsbCamera camera2;
 
-  // copy the constants into the array to make access cleaner
-  public static void initPositionArray(){
-    collectorPositions = new CollectorPosition[RobotMap.MaxBallPosIndex];
-    collectorPositions[RobotMap.GrabBallPosIndex] = new CollectorPosition(RobotMap.GrabBallElevatorPos, RobotMap.GrabBallArmPos, RobotMap.GrabBallWristPos);
-    collectorPositions[RobotMap.StowPosIndex] = new CollectorPosition(RobotMap.StowBallElevatorPos, RobotMap.StowBallArmPos, RobotMap.StowBallWristPos);
-    collectorPositions[RobotMap.LowBallPosIndex] = new CollectorPosition(RobotMap.LowBallElevatorPos, RobotMap.LowBallArmPos, RobotMap.LowBallWristPos);
-    collectorPositions[RobotMap.MiddleBallPosIndex] = new CollectorPosition(RobotMap.MiddleBallElevatorPos, RobotMap.MiddleBallArmPos, RobotMap.MiddleBallWristPos);
-    collectorPositions[RobotMap.HighBallPosIndex] = new CollectorPosition(RobotMap.HighBallElevatorPos, RobotMap.HighBallArmPos, RobotMap.HighBallWristPos);
-    collectorPositions[RobotMap.CarryBallPosIndex] = new CollectorPosition(RobotMap.CarryBallElevatorPos, RobotMap.CarryBallArmPos, RobotMap.CarryBallWristPos);
-  }
+  
 
   // this is used to log output to the console
   public static void Log(String msg){
@@ -101,7 +90,6 @@ public class Robot extends TimedRobot {
     // create all subsystems
     diffDriveBase = new DiffDriveBase();
     pidElevator = new PIDElevator();
-    intake = new Intake();
     
     // call control loop
     m_oi = new OI();
