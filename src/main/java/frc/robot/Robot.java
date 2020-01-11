@@ -10,11 +10,13 @@ package frc.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
+import frc.robot.RobotMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,9 +33,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   // subsystems
-  public static PIDElevator pidElevator = null;
   public static DiffDriveBase diffDriveBase = null;
-  public static Intake intake = null;
 
 
   //cameras
@@ -82,11 +82,10 @@ public class Robot extends TimedRobot {
 
     // make the positions to move the collector into
     // easy access
-    initPositionArray();
+    
 
     // create all subsystems
     diffDriveBase = new DiffDriveBase();
-    pidElevator = new PIDElevator();
     
     // call control loop
     m_oi = new OI();
@@ -141,9 +140,14 @@ public class Robot extends TimedRobot {
    * chooser code above (like the commented example) or additional comparisons
    * to the switch structure below with additional strings & commands.
    */
+
+  boolean autonomousBegin;
+
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
+    autonomousBegin = true;
+
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -165,15 +169,21 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
     //max time always will equal 15 seconds, then Teleop starts after 15 secs passed
-    double time = Timer.getFPGATiestamp();
 
-    if (time < 15) {
+    //IMPORTANT: this timer starts when the ROBOT turns on, not when autonomous is activated
+    double time = Timer.getFPGATimestamp();
 
-      differentialDrive.arcadeDrive(autonomousSSf, autonomousRSF);      
+    //should work so that after autonomous is initializd timer starts
+    if (autonomousBegin = true){
+
+      if (time < 15) {
+        
+        DiffDriveBase.setSpeedAndRotation(RobotMap.autonomousSSF, RobotMap.autonomousRSF);
+      }
+
     }
-  }
 
-  
+
 
   @Override
   public void teleopInit() {

@@ -7,10 +7,7 @@
 
 package frc.robot;
 
-import frc.robot.commands.ElevatorUpCmd;
-import frc.robot.commands.ElevatorDownCmd;
-import frc.robot.commands.ShootBallCmd;
-import frc.robot.commands.GrabBallCmd;
+
 
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -29,40 +26,22 @@ public class OI {
   public OI() {     
 
     // get the buttons on the drive joystick
-    JoystickButton driveButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonA);
-    JoystickButton driveButtonB = new JoystickButton(driveJoystick, RobotMap.JoystickButtonB);
-    JoystickButton driveButtonX = new JoystickButton(driveJoystick, RobotMap.JoystickButtonX);
-    JoystickButton driveButtonY = new JoystickButton(driveJoystick, RobotMap.JoystickButtonY);
-    JoystickButton driveButtonLS = new JoystickButton(driveJoystick, RobotMap.JoystickButtonShoulderLeft);
-    JoystickButton driveButtonRS = new JoystickButton(driveJoystick, RobotMap.JoystickButtonShoulderRight);
-    JoystickButton driveButtonBack = new JoystickButton(driveJoystick, RobotMap.JoystickButtonBack);
-    JoystickButton driveButtonStart = new JoystickButton(driveJoystick, RobotMap.JoystickButtonStart);
-
+    //left to show as example
+    //JoystickButton driveButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonA);
+    
     // map buttons to commands on the joystick that drives the robot
     
     
 
     // second joystick I'm calling it operational - no command mapping yet
     JoystickButton opButtonA = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonA);
-    JoystickButton opButtonB = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonB);
-    JoystickButton opButtonX = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonX);
-    JoystickButton opButtonY = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonY);
-    JoystickButton opButtonLS = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonShoulderLeft);
-    JoystickButton opButtonRS = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonShoulderRight);
-    JoystickButton opButtonBack = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonBack);
-    JoystickButton opButtonStart = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonStart);
+    
 
     // the left thumb stick controls the wrist
     // the right thumb stick control the arm
+    //-----------------------------------------------
+    //not deleted as to show as example
    // opButtonA.whenPressed(new LockWristCmd());
-    //opButtonB.whenPressed(new UnlockWristCmd());
-    opButtonBack.whileHeld(new GrabBallCmd());
-    opButtonStart.whileHeld(new ShootBallCmd());                         
-    //opButtonX.whenPressed(new WristLockPosDownCmd()); not deleted as to show these two buttons are available for assigning
-    //opButtonY.whenPressed(new WristLockPosUpCmd());
-    opButtonRS.whileHeld(new ElevatorUpCmd());
-    opButtonLS.whileHeld(new ElevatorDownCmd());
-   
 
   }
 

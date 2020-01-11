@@ -24,113 +24,103 @@ public class DiffDriveBase extends Subsystem {
   private WPI_TalonSRX  rightRearTalonSRX = null;
   private SpeedControllerGroup leftMotors = null;
   private SpeedControllerGroup rightMotors = null;
-  private DifferentialDrive differentialDrive = null;
-  
+  private static DifferentialDrive differentialDrive = null;
 
   /*
-  private Spark leftFrontSpark = null;
-  private Spark leftRearSpark = null;
-  private Spark rightFrontSpark = null;
-  private Spark rightRearSpark = null;
-  private Spark leftMotors = null;
-  private Spark rightMotors = null;
-  private DifferentialDrive differentialDrive = null;
-*/
+   * private Spark leftFrontSpark = null; private Spark leftRearSpark = null;
+   * private Spark rightFrontSpark = null; private Spark rightRearSpark = null;
+   * private Spark leftMotors = null; private Spark rightMotors = null; private
+   * DifferentialDrive differentialDrive = null;
+   */
 
   public DiffDriveBase() {
 
     // Used for CanTalons
     leftFrontTalonSRX = new WPI_TalonSRX(RobotMap.TalonDriveLeftFront);
     leftRearTalonSRX = new WPI_TalonSRX(RobotMap.TalonDriveLeftBack);
-   
+
     rightFrontTalonSRX = new WPI_TalonSRX(RobotMap.TalonDriveRightFront);
     rightRearTalonSRX = new WPI_TalonSRX(RobotMap.TalonDriveRightRear);
-  
+
     leftMotors = new SpeedControllerGroup(leftFrontTalonSRX, leftRearTalonSRX);
     rightMotors = new SpeedControllerGroup(rightFrontTalonSRX, rightRearTalonSRX);
 
-    // tells the left side that is should be inverted so that we drive straight with each side having positive motor values.
+    // tells the left side that is should be inverted so that we drive straight with
+    // each side having positive motor values.
     rightFrontTalonSRX.setInverted(true);
-    rightRearTalonSRX.setInverted(true); 
+    rightRearTalonSRX.setInverted(true);
 
-    //Config all talons
+    // Config all talons
     DiffConfigTalons(rightFrontTalonSRX);
     DiffConfigTalons(rightRearTalonSRX);
     DiffConfigTalons(leftFrontTalonSRX);
     DiffConfigTalons(leftRearTalonSRX);
 
-
-/*
-//use for Spark driving
-Spark leftFrontSpark = new Spark(RobotMap.TalonDriveLeftFront);
-Spark leftRearSpark = new Spark(RobotMap.TalonDriveLeftBack);
-
-Spark rightFrontSpark = new Spark(RobotMap.TalonDriveRightFront);
-Spark rightRearSpark = new Spark(RobotMap.TalonDriveRightRear);
-
-SpeedControllerGroup leftmotors = new SpeedControllerGroup(leftFrontSpark, leftRearSpark);
-SpeedControllerGroup rightmotors = new SpeedControllerGroup(rightFrontSpark, rightRearSpark);
-
-
-// tells the left side that is should be inverted so that we drive straight with each side having positive motor values.
-rightFrontSpark.setInverted(true);
-rightRearSpark.setInverted(false); 
-
-//DiffConfigSpark(rightFrontSpark);
-//DiffConfigSpark(rightRearSpark);
-//DiffConfigSpark(leftFrontSpark);
-//DiffConfigSpark(leftRearSpark);
-//
-*/
+    /*
+     * //use for Spark driving Spark leftFrontSpark = new
+     * Spark(RobotMap.TalonDriveLeftFront); Spark leftRearSpark = new
+     * Spark(RobotMap.TalonDriveLeftBack);
+     * 
+     * Spark rightFrontSpark = new Spark(RobotMap.TalonDriveRightFront); Spark
+     * rightRearSpark = new Spark(RobotMap.TalonDriveRightRear);
+     * 
+     * SpeedControllerGroup leftmotors = new SpeedControllerGroup(leftFrontSpark,
+     * leftRearSpark); SpeedControllerGroup rightmotors = new
+     * SpeedControllerGroup(rightFrontSpark, rightRearSpark);
+     * 
+     * 
+     * // tells the left side that is should be inverted so that we drive straight
+     * with each side having positive motor values.
+     * rightFrontSpark.setInverted(true); rightRearSpark.setInverted(false);
+     * 
+     * //DiffConfigSpark(rightFrontSpark); //DiffConfigSpark(rightRearSpark);
+     * //DiffConfigSpark(leftFrontSpark); //DiffConfigSpark(leftRearSpark); //
+     */
 
     differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
   }
-  
-  //sparks
+
+  // sparks
   /*
-  public void DiffConfigSpark(WPI_TalonSRX talon)
-  {
-    //Tells the talon that the max output that it can give is between 1 and -1 which would mean full forward and full backward.
-    //There is no allowance currently for anything in between
-    talon.configPeakOutputForward(1,0);
-    talon.configPeakOutputReverse(-1,0);
-  
-    //Tells the talon that it should current limit itself so that we don't blow a 40amp breaker.
-    talon.configPeakCurrentLimit(40,0);
+   * public void DiffConfigSpark(WPI_TalonSRX talon) { //Tells the talon that the
+   * max output that it can give is between 1 and -1 which would mean full forward
+   * and full backward. //There is no allowance currently for anything in between
+   * talon.configPeakOutputForward(1,0); talon.configPeakOutputReverse(-1,0);
+   * 
+   * //Tells the talon that it should current limit itself so that we don't blow a
+   * 40amp breaker. talon.configPeakCurrentLimit(40,0);
+   * talon.enableCurrentLimit(true); talon.configContinuousCurrentLimit(40,0);
+   * //The max output current is 40Amps for .25 of a second
+   * talon.configPeakCurrentDuration(250, 0);
+   * 
+   * //Tells the talon that is should only appy 12 volts or less to the motor.
+   * talon.configVoltageCompSaturation(12,0);
+   * 
+   * // invert the direction if necessary talon.setInverted(false); }
+   */
+  // talons
+  public void DiffConfigTalons(WPI_TalonSRX talon) {
+    // Tells the talon that the max output that it can give is between 1 and -1
+    // which would mean full forward and full backward.
+    // There is no allowance currently for anything in between
+    talon.configPeakOutputForward(1, 0);
+    talon.configPeakOutputReverse(-1, 0);
+
+    // Tells the talon that it should current limit itself so that we don't blow a
+    // 40amp breaker.
+    talon.configPeakCurrentLimit(40, 0);
     talon.enableCurrentLimit(true);
-    talon.configContinuousCurrentLimit(40,0);
-    //The max output current is 40Amps for .25 of a second
+    talon.configContinuousCurrentLimit(40, 0);
+    // The max output current is 40Amps for .25 of a second
     talon.configPeakCurrentDuration(250, 0);
-  
-    //Tells the talon that is should only appy 12 volts or less to the motor.
-    talon.configVoltageCompSaturation(12,0);
+
+    // Tells the talon that is should only appy 12 volts or less to the motor.
+    talon.configVoltageCompSaturation(12, 0);
 
     // invert the direction if necessary
     talon.setInverted(false);
   }
-  */
- //talons
-  public void DiffConfigTalons(WPI_TalonSRX talon)
-  {
-    //Tells the talon that the max output that it can give is between 1 and -1 which would mean full forward and full backward.
-    //There is no allowance currently for anything in between
-    talon.configPeakOutputForward(1,0);
-    talon.configPeakOutputReverse(-1,0);
-  
-    //Tells the talon that it should current limit itself so that we don't blow a 40amp breaker.
-    talon.configPeakCurrentLimit(40,0);
-    talon.enableCurrentLimit(true);
-    talon.configContinuousCurrentLimit(40,0);
-    //The max output current is 40Amps for .25 of a second
-    talon.configPeakCurrentDuration(250, 0);
-  
-    //Tells the talon that is should only appy 12 volts or less to the motor.
-    talon.configVoltageCompSaturation(12,0);
 
-    // invert the direction if necessary
-    talon.setInverted(false);
-  }
-  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
@@ -138,7 +128,7 @@ rightRearSpark.setInverted(false);
     setDefaultCommand(new DiffDriveCommand());
   }
 
-  public void setSpeedAndRotation(double speed, double rotation){
+  public static void setSpeedAndRotation(double speed, double rotation) {
     differentialDrive.arcadeDrive(speed, rotation);
   }
 
