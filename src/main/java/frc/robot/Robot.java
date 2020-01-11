@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
-import frc.robot.commands.Autonomous;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,7 +27,7 @@ public class Robot extends TimedRobot {
   //public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
-  Command m_autonomousCommand = ;
+  Command m_autonomousCommand; 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   // subsystems
@@ -36,8 +35,6 @@ public class Robot extends TimedRobot {
   public static DiffDriveBase diffDriveBase = null;
   public static Intake intake = null;
 
-  // this array holds the position of the collector in each index
-  public static CollectorPosition[] collectorPositions;
 
   //cameras
   public static UsbCamera camera1;
@@ -167,7 +164,16 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    //max time always will equal 15 seconds, then Teleop starts after 15 secs passed
+    double time = Timer.getFPGATiestamp();
+
+    if (time < 15) {
+
+      differentialDrive.arcadeDrive(autonomousSSf, autonomousRSF);      
+    }
   }
+
+  
 
   @Override
   public void teleopInit() {

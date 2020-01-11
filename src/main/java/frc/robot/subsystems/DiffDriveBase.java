@@ -39,7 +39,7 @@ public class DiffDriveBase extends Subsystem {
 
   public DiffDriveBase() {
 
-    /* Used for CanTalons
+    // Used for CanTalons
     leftFrontTalonSRX = new WPI_TalonSRX(RobotMap.TalonDriveLeftFront);
     leftRearTalonSRX = new WPI_TalonSRX(RobotMap.TalonDriveLeftBack);
    
@@ -58,9 +58,9 @@ public class DiffDriveBase extends Subsystem {
     DiffConfigTalons(rightRearTalonSRX);
     DiffConfigTalons(leftFrontTalonSRX);
     DiffConfigTalons(leftRearTalonSRX);
-*/
 
 
+/*
 //use for Spark driving
 Spark leftFrontSpark = new Spark(RobotMap.TalonDriveLeftFront);
 Spark leftRearSpark = new Spark(RobotMap.TalonDriveLeftBack);
@@ -81,12 +81,13 @@ rightRearSpark.setInverted(false);
 //DiffConfigSpark(leftFrontSpark);
 //DiffConfigSpark(leftRearSpark);
 //
-
+*/
 
     differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
   }
   
   //sparks
+  /*
   public void DiffConfigSpark(WPI_TalonSRX talon)
   {
     //Tells the talon that the max output that it can give is between 1 and -1 which would mean full forward and full backward.
@@ -107,7 +108,8 @@ rightRearSpark.setInverted(false);
     // invert the direction if necessary
     talon.setInverted(false);
   }
-/* //talons
+  */
+ //talons
   public void DiffConfigTalons(WPI_TalonSRX talon)
   {
     //Tells the talon that the max output that it can give is between 1 and -1 which would mean full forward and full backward.
@@ -128,7 +130,7 @@ rightRearSpark.setInverted(false);
     // invert the direction if necessary
     talon.setInverted(false);
   }
-  */
+  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
