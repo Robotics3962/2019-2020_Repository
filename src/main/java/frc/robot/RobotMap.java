@@ -24,13 +24,9 @@ public class RobotMap {
   public static final int SparkMotorId2 = 6;
 
   // these are CAN bus ids
-  public static final int TalonMotorCanId1 = 8;
-  public static final int TalonMotorCanId2 = 7;
-  public static final int TalonMotorCanID3 = 6;
-  public static final int TalonMotorCanID4 = 5;
-  public static final int TalonDriveLeftFront = 2;
-  public static final int TalonDriveLeftBack = 3;
-  public static final int TalonDriveRightFront = 1;
+  public static final int TalonDriveLeftFront = 2; //2
+  public static final int TalonDriveLeftBack = 1; //1
+  public static final int TalonDriveRightFront = 3; //3
   public static final int TalonDriveRightRear = 4;
   public static final double TalonMinOutput = -0.25;
   public static final double TalonMaxOutput = 0.3;

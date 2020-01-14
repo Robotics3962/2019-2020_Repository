@@ -179,7 +179,10 @@ public class Robot extends TimedRobot {
 
       if (startTime - time < 15) {
         
-        DiffDriveBase.setSpeedAndRotation(0.0, 0.5);    //RobotMap.autonomousSSF, RobotMap.autonomousRSF);
+        DiffDriveBase.setSpeedAndRotation(0.4, 0.0);    //RobotMap.autonomousSSF, RobotMap.autonomousRSF);
+        DiffDriveBase.setSpeedAndRotation(0.0, -0.4);
+
+       // arcadeDrive​(double xSpeed, double zRotation);
       }
     
    }

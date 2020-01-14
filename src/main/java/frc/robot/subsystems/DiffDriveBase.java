@@ -50,6 +50,7 @@ public class DiffDriveBase extends Subsystem {
     rightFrontTalonSRX.setInverted(true);
     rightRearTalonSRX.setInverted(true);
 
+    
     // Config all talons
     DiffConfigTalons(rightFrontTalonSRX);
     DiffConfigTalons(rightRearTalonSRX);
