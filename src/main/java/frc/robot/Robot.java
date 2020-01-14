@@ -40,6 +40,9 @@ public class Robot extends TimedRobot {
   public static UsbCamera camera1;
   public static UsbCamera camera2;
 
+  //timestamp used for autonomous
+  double startTime = Timer.getFPGATimestamp();
+
   
 
   // this is used to log output to the console
@@ -57,8 +60,8 @@ public class Robot extends TimedRobot {
   // stop the program from running or otherwise
   // indicate an error
   public static void die(){
-    int x = 0;
-    int u = 1/x;
+   // int x = 0;
+    //int u = 1/x;
   }
 
   public static void UpdateDashboard(String tag, double value){
@@ -141,12 +144,10 @@ public class Robot extends TimedRobot {
    * to the switch structure below with additional strings & commands.
    */
 
-  boolean autonomousBegin;
 
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
-    autonomousBegin = true;
 
 
     /*
@@ -174,13 +175,13 @@ public class Robot extends TimedRobot {
     double time = Timer.getFPGATimestamp();
 
     //should work so that after autonomous is initializd timer starts
-    if (autonomousBegin = true){
+    
 
-      if (time < 15) {
+      if (startTime - time < 15) {
         
         DiffDriveBase.setSpeedAndRotation(RobotMap.autonomousSSF, RobotMap.autonomousRSF);
       }
-    }
+    
    }
 
 
