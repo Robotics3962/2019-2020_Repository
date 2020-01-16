@@ -47,8 +47,11 @@ public class DiffDriveBase extends Subsystem {
 
     // tells the left side that is should be inverted so that we drive straight with
     // each side having positive motor values.
-    rightFrontTalonSRX.setInverted(true);
-    rightRearTalonSRX.setInverted(true);
+    rightFrontTalonSRX.setInverted(true); //3
+    rightRearTalonSRX.setInverted(true); //4
+    leftFrontTalonSRX.setInverted(true); //2
+    leftRearTalonSRX.setInverted(true); //1
+
 
     
     // Config all talons
