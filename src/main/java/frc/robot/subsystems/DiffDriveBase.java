@@ -22,8 +22,8 @@ public class DiffDriveBase extends Subsystem {
   private WPI_TalonSRX  leftRearTalonSRX = null;
   private WPI_TalonSRX  rightFrontTalonSRX = null;
   private WPI_TalonSRX  rightRearTalonSRX = null;
-  private SpeedControllerGroup leftMotors = null;
-  private SpeedControllerGroup rightMotors = null;
+  public static SpeedControllerGroup leftMotors = null;
+  public static SpeedControllerGroup rightMotors = null;
   private static DifferentialDrive differentialDrive = null;
 
   /*

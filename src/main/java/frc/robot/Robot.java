@@ -41,8 +41,8 @@ public class Robot extends TimedRobot {
   public static UsbCamera camera2;
 
   //timestamp used for autonomous
-  double startTime = Timer.getFPGATimestamp();
-
+  double time;
+  double startTime;
   
 
   // this is used to log output to the console
@@ -83,8 +83,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    // make the positions to move the collector into
-    // easy access
+    time = Timer.getFPGATimestamp();
+    
+    
     
 
     // create all subsystems
@@ -149,6 +150,10 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
 
+    DiffDriveBase.rightMotors.setInverted(false);
+    DiffDriveBase.leftMotors.setInverted(false);
+    //IMPORTANT: this timer starts when the ROBOT turns on, not when autonomous is activated
+    startTime = Timer.getFPGATimestamp();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -171,8 +176,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     //max time always will equal 15 seconds, then Teleop starts after 15 secs passed
 
-    //IMPORTANT: this timer starts when the ROBOT turns on, not when autonomous is activated
-    double time = Timer.getFPGATimestamp();
+    
 
     //should work so that after autonomous is initializd timer starts
     
@@ -180,9 +184,8 @@ public class Robot extends TimedRobot {
       if (startTime - time < 15) {
         
         DiffDriveBase.setSpeedAndRotation(0.4, 0.0);    //RobotMap.autonomousSSF, RobotMap.autonomousRSF);
-        DiffDriveBase.setSpeedAndRotation(0.0, -0.4);
+       
 
-       // arcadeDrive​(double xSpeed, double zRotation);
       }
     
    }
