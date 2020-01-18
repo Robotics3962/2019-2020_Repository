@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    time = Timer.getFPGATimestamp();
+    
     
     
     
@@ -148,6 +148,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    
+
     m_autonomousCommand = m_chooser.getSelected();
 
     DiffDriveBase.rightMotors.setInverted(false);
@@ -177,14 +179,19 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+
+    System.out.println("Current val for 'time':" +time);
+    System.out.println("Current val for 'startTime':" +startTime);
+
     //max time always will equal 15 seconds, then Teleop starts after 15 secs passed
 
-    
+    //continually update value
+    time = Timer.getFPGATimestamp();
 
     //should work so that after autonomous is initializd timer starts
     
 
-      if (startTime - time < 15) {
+      if (time - startTime < 15) {
         
         DiffDriveBase.setSpeedAndRotation(0.4, 0.0);    //RobotMap.autonomousSSF, RobotMap.autonomousRSF);
        
