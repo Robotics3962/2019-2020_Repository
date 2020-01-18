@@ -57,87 +57,86 @@ public class Robot extends TimedRobot {
   //timestamp used for autonomous
   double time;
   double startTime;
-  
+
+  //gyro
+  static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
   // this is used to log output to the console
-  public static void Log(String msg){
+  public static void Log(String msg) {
     System.out.println(msg);
   }
-  
+
   // used in out of phase encoder detection
   public enum Direction {
-    NONE,UP,DOWN
+    NONE, UP, DOWN
   }
 
-  // this is a divide by 0 which will 
-  // throw an exception which should 
+  // this is a divide by 0 which will
+  // throw an exception which should
   // stop the program from running or otherwise
   // indicate an error
-  public static void die(){
-   // int x = 0;
-    //int u = 1/x;
+  public static void die() {
+    // int x = 0;
+    // int u = 1/x;
   }
 
-  public static void UpdateDashboard(String tag, double value){
-    SmartDashboard.putNumber(tag, value);    
+  public static void UpdateDashboard(String tag, double value) {
+    SmartDashboard.putNumber(tag, value);
   }
 
-  public static void UpdateDashboard(String tag, boolean value){
-    SmartDashboard.putBoolean(tag, value);    
+  public static void UpdateDashboard(String tag, boolean value) {
+    SmartDashboard.putBoolean(tag, value);
   }
 
-  public static void UpdateDashboard(String tag, String value){
-    SmartDashboard.putString(tag, value);    
+  public static void UpdateDashboard(String tag, String value) {
+    SmartDashboard.putString(tag, value);
   }
 
   /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
+   * This function is run when the robot is first started up and should be used
+   * for any initialization code.
    */
   @Override
   public void robotInit() {
 
-    //calibrates the gyro sensor
-	 ADXRS450_Gyro m_gyro = new ADXRS450_Gyro();
-	 m_gyro.calibrate();
-	
-    
-    
+    // calibrates the gyro sensor
+    gyro.calibrate();
+
     // create all subsystems
     diffDriveBase = new DiffDriveBase();
-    
+
     // call control loop
     m_oi = new OI();
 
-    //set up camera servers
+    // set up camera servers
     camera1 = CameraServer.getInstance().startAutomaticCapture(0);
     camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 
     camera1.setResolution(320, 420);
     camera2.setResolution(320, 420);
 
-
-    //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    //SmartDashboard.putData("Auto mode", m_chooser);
+    // SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
+   * This function is called every robot packet, no matter the mode. Use this for
+   * items like diagnostics that you want ran during disabled, autonomous,
+   * teleoperated and test.
    *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and SmartDashboard integrated updating.
    */
   @Override
   public void robotPeriodic() {
   }
 
   /**
-   * This function is called once each time the robot enters Disabled mode.
-   * You can use it to reset any subsystem information you want to clear when
-   * the robot is disabled.
+   * This function is called once each time the robot enters Disabled mode. You
+   * can use it to reset any subsystem information you want to clear when the
+   * robot is disabled.
    */
   @Override
   public void disabledInit() {
@@ -150,16 +149,16 @@ public class Robot extends TimedRobot {
 
   /**
    * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard. If you prefer the
-   * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-   * getString code to get the auto name from the text box below the Gyro
+   * between different autonomous modes using the dashboard. The sendable chooser
+   * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+   * remove all of the chooser code and uncomment the getString code to get the
+   * auto name from the text box below the Gyro
    *
-   * <p>You can add additional auto modes by adding additional commands to the
-   * chooser code above (like the commented example) or additional comparisons
-   * to the switch structure below with additional strings & commands.
+   * <p>
+   * You can add additional auto modes by adding additional commands to the
+   * chooser code above (like the commented example) or additional comparisons to
+   * the switch structure below with additional strings & commands.
    */
-
 
   @Override
   public void autonomousInit() {
@@ -167,14 +166,15 @@ public class Robot extends TimedRobot {
 
     DiffDriveBase.rightMotors.setInverted(false);
     DiffDriveBase.leftMotors.setInverted(false);
-    //IMPORTANT: this timer starts when the ROBOT turns on, not when autonomous is activated
+    // IMPORTANT: this timer starts when the ROBOT turns on, not when autonomous is
+    // activated
     startTime = Timer.getFPGATimestamp();
 
     /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
+     * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+     * switch(autoSelected) { case "My Auto": autonomousCommand = new
+     * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
+     * ExampleCommand(); break; }
      */
 
     // schedule the autonomous command (example)
@@ -183,37 +183,41 @@ public class Robot extends TimedRobot {
     }
   }
 
-
-
-
   /**
    * This function is called periodically during autonomous.
    */
   @Override
   public void autonomousPeriodic() {
+
+    //
+    
     Scheduler.getInstance().run();
 
-    System.out.println("Current val for 'time':" +time);
-    System.out.println("Current val for 'startTime':" +startTime);
+    System.out.println("Current val for 'time':" + time);
+    System.out.println("Current val for 'startTime':" + startTime);
 
-    //max time always will equal 15 seconds, then Teleop starts after 15 secs passed
+    // max time always will equal 15 seconds, then Teleop starts after 15 secs
+    // passed
 
-    //continually update value
+    // continually update value
     time = Timer.getFPGATimestamp();
 
-    //should work so that after autonomous is initializd timer starts
-    
+    // should work so that after autonomous is initializd timer starts
 
-      if (time - startTime < 15) {
-        
-        DiffDriveBase.setSpeedAndRotation(0.4, 0.0);    //RobotMap.autonomousSSF, RobotMap.autonomousRSF);
-       
+    if (time - startTime <= 10) {
 
+      DiffDriveBase.setSpeedAndRotation(0.4, 0.0); // RobotMap.autonomousSSF, RobotMap.autonomousRSF)  
+    }
+    else if (time - startTime > 10 && time - startTime < 18) {
+
+      if (gyro.getAngle() < 45) {
+
+        DiffDriveBase.setSpeedAndRotation(0, 0.4);
       }
-    
-   }
+    }
 
 
+  }
 
   @Override
   public void teleopInit() {
@@ -241,5 +245,9 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
   }
 
+  public static void getGyroAngle() {
+    // get angle(goes past 360)
+    gyro.getAngle();
+  }
   
 }
