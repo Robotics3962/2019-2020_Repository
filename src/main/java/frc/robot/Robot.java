@@ -7,16 +7,31 @@
 
 package frc.robot;
 
+//camera libraries
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+
+//timer libraries
 import edu.wpi.first.wpilibj.Timer;
+
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+
+
+//smart dashboard
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
-import frc.robot.RobotMap;
+
+//gyro libraries
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.GyroBase;
+import frc.robot.subsystems.gyro;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -83,11 +98,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
+    //calibrates the gyro sensor
+    gyro.calibrate();
     
     
-    
-    
-
     // create all subsystems
     diffDriveBase = new DiffDriveBase();
     
@@ -148,8 +162,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    
-
     m_autonomousCommand = m_chooser.getSelected();
 
     DiffDriveBase.rightMotors.setInverted(false);
