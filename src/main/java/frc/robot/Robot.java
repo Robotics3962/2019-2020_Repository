@@ -16,21 +16,20 @@ import edu.wpi.first.wpilibj.TimedRobot;
 //timer libraries
 import edu.wpi.first.wpilibj.Timer;
 
-
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-
 
 //smart dashboard
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
-
 //gyro libraries
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.GyroBase;
 import frc.robot.subsystems.gyro;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+
 
 
 /**
@@ -99,7 +98,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
     //calibrates the gyro sensor
-    gyro.calibrate();
+	 ADXRS450_Gyro m_gyro = new ADXRS450_Gyro();
+	 m_gyro.calibrate();
+	
     
     
     // create all subsystems
@@ -239,4 +240,6 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+  
 }

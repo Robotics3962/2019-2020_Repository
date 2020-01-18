@@ -22,7 +22,7 @@ import java.nio.ByteOrder;
  * This class is for the digital ADXRS453 gyro sensor that connects via SPI. A datasheet can be found here:
  * http://www.analog.com/media/en/technical-documentation/data-sheets/ADXRS453. pdf
  */
-public class gyro extends GyroBase implements Gyro, PIDSource { //removed livewindow sendable
+public class gyro extends GyroBase implements Gyro/*, PIDSource*/ { //removed livewindow sendable
     public static final double kCalibrationSampleTime = 5.0;
 
     private static final double kSamplePeriod = 0.001;
@@ -30,37 +30,37 @@ public class gyro extends GyroBase implements Gyro, PIDSource { //removed livewi
 
     private static final int kPIDRegister = 0x0C;
 
-    private SPI m_spi;
+    private static SPI m_spi;
 
-    private boolean m_is_calibrating;
-    private double m_last_center;
+    private static boolean m_is_calibrating;
+    private static double m_last_center;
 
     /**
      * Constructor. Uses the onboard CS0.
-     * @return 
+     * 
+     * @return
      */
-    
-    //public  BasicGyro() {
-    //    this(SPI.Port.kOnboardCS0);
-    //}
+
+    // public BasicGyro() {
+    // this(SPI.Port.kOnboardCS0);
+    // }
 
     /**
      * Constructor.
      *
-     * @param port
-     *            (the SPI port that the gyro is connected to)
+     * @param port (the SPI port that the gyro is connected to)
      */
     public gyro(SPI.Port port) {
         m_spi = new SPI(port);
         m_spi.setClockRate(3000000);
         m_spi.setMSBFirst();
-        m_spi.setSampleDataOnRising();
+        m_spi.setSampleDataOnLeadingEdge();
         m_spi.setClockActiveHigh();
         m_spi.setChipSelectActiveLow();
 
         /** Validate the part ID */
         if ((readRegister(kPIDRegister) & 0xff00) != 0x5200) {
-            //m_spi.free();
+            // m_spi.free();
             m_spi = null;
             DriverStation.reportError("Could not find ADXRS453 gyro on SPI port " + port.value, false);
             return;
@@ -68,25 +68,26 @@ public class gyro extends GyroBase implements Gyro, PIDSource { //removed livewi
 
         m_spi.initAccumulator(kSamplePeriod, 0x20000000, 4, 0x0c00000E, 0x04000000, 10, 16, true, true);
 
-        calibrate();
+        // calibrate();
 
-       // LiveWindow.addSensor("ADXRS453_Gyro", port.value, this);
+        // LiveWindow.addSensor("ADXRS453_Gyro", port.value, this);
     }
 
     /**
-     * This is a blocking calibration call. There are also non-blocking options available in this class!
+     * This is a blocking calibration call. There are also non-blocking options
+     * available in this class!
      * 
      * {@inheritDoc}
      */
     @Override
-    public synchronized void calibrate() {
+    public synchronized static void calibrate() {
         Timer.delay(0.1);
         startCalibrate();
         Timer.delay(kCalibrationSampleTime);
         endCalibrate();
     }
 
-    public synchronized void startCalibrate() {
+    public synchronized static void startCalibrate() {
         if (m_spi == null)
             return;
 
@@ -97,7 +98,7 @@ public class gyro extends GyroBase implements Gyro, PIDSource { //removed livewi
         }
     }
 
-    public synchronized void endCalibrate() {
+    public synchronized static void endCalibrate() {
         if (m_is_calibrating) {
             m_is_calibrating = false;
             m_last_center = m_spi.getAccumulatorAverage();
@@ -112,6 +113,10 @@ public class gyro extends GyroBase implements Gyro, PIDSource { //removed livewi
             m_spi.setAccumulatorCenter((int) Math.round(m_last_center));
             m_spi.resetAccumulator();
         }
+    }
+
+    public static void calibrateRobot() {
+        calibrate();
     }
 
     public synchronized double getCenter() {
@@ -207,10 +212,10 @@ public class gyro extends GyroBase implements Gyro, PIDSource { //removed livewi
         return m_spi.getAccumulatorLastValue() * kDegreePerSecondPerLSB;
     }
 
-	@Override
-	public void close() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-}
+    @Override
+    public void close() throws Exception {
+        // TODO Auto-generated method stub
+
+    }
+
 }
