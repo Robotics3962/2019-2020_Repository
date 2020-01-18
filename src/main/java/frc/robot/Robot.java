@@ -200,9 +200,11 @@ public class Robot extends TimedRobot {
 
     // should work so that after autonomous is initializd timer starts
 
+    /*
     if (time - startTime <= 10) {
 
-      DiffDriveBase.setSpeedAndRotation(0.4, 0.0); // RobotMap.autonomousSSF, RobotMap.autonomousRSF)  
+      DiffDriveBase.setSpeedAndRotation(0.4, 0.0); // RobotMap.autonomousSSF, RobotMap.autonomousRSF)
+
     }
     else if (time - startTime > 10 && time - startTime < 18) {
 
@@ -211,7 +213,21 @@ public class Robot extends TimedRobot {
         DiffDriveBase.setSpeedAndRotation(0, 0.4);
       }
     }
+    */
 
+    if (time -startTime <= 5){
+
+      DiffDriveBase.setSpeedAndRotation(0.4, 0);
+    }
+    if (time - startTime > 5 && time - startTime <= 10){
+
+      DiffDriveBase.setSpeedAndRotation(0, 0.4);
+    } 
+
+    if (time - startTime > 10 && time - startTime <= 15) {
+
+      DiffDriveBase.setSpeedAndRotation(0.4, 0);
+    }
 
   }
 
