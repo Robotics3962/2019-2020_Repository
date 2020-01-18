@@ -24,10 +24,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
 //gyro libraries
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.GyroBase;
-import frc.robot.subsystems.gyro;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 
