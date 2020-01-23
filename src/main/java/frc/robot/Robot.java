@@ -10,21 +10,28 @@ package frc.robot;
 //camera libraries
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-
+//misc
 import edu.wpi.first.wpilibj.TimedRobot;
-
+//compressor + solenoid
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Solenoid;
 //timer libraries
 import edu.wpi.first.wpilibj.Timer;
-
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-
 //smart dashboard
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
 //gyro libraries
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+
+//limelight libraries
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import oi.limelightvision.limelight.frc.LimeLight;
+//import oi.limelightvision.limelight.frc.ControlMode.*;
+
 
 
 
@@ -44,6 +51,9 @@ public class Robot extends TimedRobot {
 
   // subsystems
   public static DiffDriveBase diffDriveBase = null;
+
+  //compressor
+  Compressor c;
 
 
   //cameras
@@ -127,6 +137,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
+    
   }
 
   /**
@@ -221,12 +233,23 @@ public class Robot extends TimedRobot {
     }
     if (time - startTime > 5 && time - startTime <= 10){
 
-      DiffDriveBase.setSpeedAndRotation(0, 0.4);
+      if (gyro.getAngle() < 90) {
+
+        DiffDriveBase.setSpeedAndRotation(0, 0.4);
+      }
     } 
 
     if (time - startTime > 10 && time - startTime <= 15) {
 
       DiffDriveBase.setSpeedAndRotation(0.4, 0);
+    }
+
+    if (time - startTime > 5 && time - startTime <= 10){
+
+      if (gyro.getAngle() < 90) {
+       
+        DiffDriveBase.setSpeedAndRotation(0,0.4);
+      }
     }
 
   }
