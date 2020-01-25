@@ -14,8 +14,8 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 //compressor + solenoid
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
-import frc.robot.commands.CompressorStart;
 //timer libraries
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -54,9 +54,8 @@ public class Robot extends TimedRobot {
   public static DiffDriveBase diffDriveBase = null;
 
   
-  public static Compressor c = new Compressor(5);
-
-  Solenoid solenoid_1 = new Solenoid(0);//placeholder int
+  Solenoid solenoid_1 = new Solenoid(1,2);// placeholder int
+  DoubleSolenoid anotherDoubleSolenoid = new DoubleSolenoid(5,1,2);
 
 
   //cameras
@@ -128,7 +127,7 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
 
-    CompressorStart.on();
+    
   }
 
   /**
