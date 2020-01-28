@@ -15,8 +15,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 //compressor + solenoid
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
-import frc.robot.commands.CompressorStart;
-//timer libraries
+import frc.robot.subsystems.CompressorStart;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -56,7 +55,7 @@ public class Robot extends TimedRobot {
   
   public static Compressor c = new Compressor(5);
 
-  Solenoid solenoid_1 = new Solenoid(0);//placeholder int
+  //Solenoid solenoid_1 = new Solenoid(0);//placeholder int
 
 
   //cameras
@@ -128,7 +127,9 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
 
-    CompressorStart.on();
+    startTime = Timer.getFPGATimestamp();
+    CompressorStart.start();
+    
   }
 
   /**
@@ -142,8 +143,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    time = Timer.getFPGATimestamp();
 
-    
+    if (time -startTime >= 30) {
+      CompressorStart.stop();
+      }
   }
 
   /**
