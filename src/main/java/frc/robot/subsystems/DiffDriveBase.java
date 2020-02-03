@@ -47,18 +47,17 @@ public class DiffDriveBase extends Subsystem {
 
     // tells the left side that is should be inverted so that we drive straight with
     // each side having positive motor values.
-    rightFrontTalonSRX.setInverted(true); //3
-    rightRearTalonSRX.setInverted(true); //4
+    rightFrontTalonSRX.setInverted(false); //3
+    rightRearTalonSRX.setInverted(false); //4
     leftFrontTalonSRX.setInverted(true); //2
     leftRearTalonSRX.setInverted(true); //1
-
-
-    
+  
     // Config all talons
     DiffConfigTalons(rightFrontTalonSRX);
     DiffConfigTalons(rightRearTalonSRX);
     DiffConfigTalons(leftFrontTalonSRX);
     DiffConfigTalons(leftRearTalonSRX);
+
 
     /*
      * //use for Spark driving Spark leftFrontSpark = new
@@ -122,7 +121,7 @@ public class DiffDriveBase extends Subsystem {
     talon.configVoltageCompSaturation(12, 0);
 
     // invert the direction if necessary
-    talon.setInverted(false);
+    //talon.setInverted(false);
   }
 
   @Override
@@ -134,6 +133,11 @@ public class DiffDriveBase extends Subsystem {
 
   public static void setSpeedAndRotation(double speed, double rotation) {
     differentialDrive.arcadeDrive(speed, rotation);
+  }
+
+  public void dumpEncoderValues(){
+    //System.out.println("right motor val:" + rightRearTalonSRX.getSelectedSensorPosition());
+    //System.out.println("left motor val:" + leftRearTalonSRX.getSelectedSensorPosition());
   }
 
   public void stop(){

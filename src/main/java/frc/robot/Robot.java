@@ -23,7 +23,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
-//gyro libraries
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 //limelight libraries
@@ -31,6 +30,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import oi.limelightvision.limelight.frc.LimeLight;
 //import oi.limelightvision.limelight.frc.ControlMode.*;
+
 
 
 
@@ -280,6 +280,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    diffDriveBase.dumpEncoderValues();
+
   }
 
   /**

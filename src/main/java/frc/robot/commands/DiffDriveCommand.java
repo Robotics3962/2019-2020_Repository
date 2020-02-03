@@ -33,7 +33,7 @@ public class DiffDriveCommand extends Command {
   @Override
   protected void execute() {
     double speed = Robot.m_oi.getLeftThrottle() * -1;
-    double rotation = Robot.m_oi.getRightRotation() * 1;
+    double rotation = Robot.m_oi.getRightRotation() * -1;
     double scaledSpeed;
     double scaledRotation;
 

@@ -23,13 +23,22 @@ public class RobotMap {
   public static final int SparkMotorId1 = 5;
   public static final int SparkMotorId2 = 6;
 
-  // these are CAN bus ids
+  // these are CAN bus ids(ghettobot)
+  //public static final int TalonDriveLeftFront = 2; //2
+  //public static final int TalonDriveLeftBack = 1; //1
+  //public static final int TalonDriveRightFront = 3; //3
+  //public static final int TalonDriveRightRear = 4;
+  //public static final double TalonMinOutput = -0.25;
+  //public static final double TalonMaxOutput = 0.3;
+
+  //formerCompBot
   public static final int TalonDriveLeftFront = 2; //2
-  public static final int TalonDriveLeftBack = 1; //1
-  public static final int TalonDriveRightFront = 3; //3
+  public static final int TalonDriveLeftBack = 3; //1
+  public static final int TalonDriveRightFront = 1; //3
   public static final int TalonDriveRightRear = 4;
   public static final double TalonMinOutput = -0.25;
   public static final double TalonMaxOutput = 0.3;
+
 
   /// generic
   public static final double TalonUpSpeed = -.2;

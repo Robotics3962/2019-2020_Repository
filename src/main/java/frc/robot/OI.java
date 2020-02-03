@@ -7,11 +7,9 @@
 
 package frc.robot;
 
-
-
-
 import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -27,7 +25,7 @@ public class OI {
 
     // get the buttons on the drive joystick
     //left to show as example
-    //JoystickButton driveButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonA);
+    JoystickButton driveButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonA);
     
     // map buttons to commands on the joystick that drives the robot
     
@@ -49,9 +47,10 @@ public class OI {
   
   public double getLeftThrottle() {
 		return driveJoystick.getY(); // Laika needs negative, Belka is positive
-	}	
+  }	
 
 	public double getRightRotation() {
-		return driveJoystick.getRawAxis(4);
+    return driveJoystick.getRawAxis(4);
+    
   }
 }
