@@ -7,24 +7,20 @@
 
 package frc.robot;
 
-//camera libraries
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-//misc
 import edu.wpi.first.wpilibj.TimedRobot;
-//compressor + solenoid
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
-//timer libraries
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-//smart dashboard
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
-//gyro libraries
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 //limelight libraries
@@ -69,6 +65,25 @@ public class Robot extends TimedRobot {
   //gyro
   static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
+  //encoders
+  //Constants
+  public static final double kDistancePerRevolution = 1.2;//placeholder value
+  public static final double kPulsesPerRevolution = 1024; //not sure if this value is correct
+  public static final double kDistancePerPulse = kDistancePerRevolution/kPulsesPerRevolution;
+
+  private Encoder leftEncoder = new Encoder (0,0, false, EncodingType.k4X);//both right and left need something to be assigned for their ports
+  private Encoder rightEncoder = new Encoder (0,0, true, EncodingType.k4X);
+
+  
+  leftEncoder.setDistanceperPulse(kDistancePerPulse);
+  rightEncoder.setDistanceperPulse(kDistancePerPulse);
+
+  leftEncoder.start();
+  rightEncoder.start();
+
+    
+    
+
   // this is used to log output to the console
   public static void Log(String msg) {
     System.out.println(msg);
@@ -110,6 +125,8 @@ public class Robot extends TimedRobot {
     // calibrates the gyro sensor
     gyro.calibrate();
 
+    resetEncoders();
+
     // create all subsystems
     diffDriveBase = new DiffDriveBase();
 
@@ -128,6 +145,16 @@ public class Robot extends TimedRobot {
     // SmartDashboard.putData("Auto mode", m_chooser);
 
     
+  }
+
+  private double getAverageEncoderPosition() {
+    return (leftEncoder.getDistance() + rightEncoder.getDistance()) / 2;
+
+}
+
+  private void resetEncoders() {
+      leftEncoder.reset();
+      rightEncoder.reset();
   }
 
   /**
