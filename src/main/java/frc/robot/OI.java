@@ -10,6 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.DiffDriveCommand;
+import frc.robot.commands.PrintEncoderValues;
+import frc.robot.subsystems.DiffDriveBase;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -26,6 +29,7 @@ public class OI {
     // get the buttons on the drive joystick
     //left to show as example
     JoystickButton driveButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonA);
+    JoystickButton driveButtonB = new JoystickButton(driveJoystick, RobotMap.JoystickButtonB);
     
     // map buttons to commands on the joystick that drives the robot
     
@@ -33,7 +37,7 @@ public class OI {
 
     // second joystick I'm calling it operational - no command mapping yet
     //JoystickButton opButtonA = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonA);
-    
+    driveButtonB.whenPressed(new PrintEncoderValues());
 
     // the left thumb stick controls the wrist
     // the right thumb stick control the arm

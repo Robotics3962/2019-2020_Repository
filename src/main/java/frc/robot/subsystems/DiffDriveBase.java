@@ -14,14 +14,16 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 //import edu.wpi.first.wpilibj.Spark;
 import frc.robot.RobotMap;
 import frc.robot.commands.DiffDriveCommand;
+import edu.wpi.first.wpilibj.CounterBase;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class DiffDriveBase extends Subsystem {
 
-  //   Used for when we have CanTalons for driving
-  private WPI_TalonSRX  leftFrontTalonSRX = null;
-  private WPI_TalonSRX  leftRearTalonSRX = null;
-  private WPI_TalonSRX  rightFrontTalonSRX = null;
-  private WPI_TalonSRX  rightRearTalonSRX = null;
+  // Used for when we have CanTalons for driving
+  public static WPI_TalonSRX leftFrontTalonSRX = null;
+  public static WPI_TalonSRX leftRearTalonSRX = null;
+  public static WPI_TalonSRX rightFrontTalonSRX = null;
+  public static WPI_TalonSRX rightRearTalonSRX = null;
   public static SpeedControllerGroup leftMotors = null;
   public static SpeedControllerGroup rightMotors = null;
   private static DifferentialDrive differentialDrive = null;
@@ -47,17 +49,16 @@ public class DiffDriveBase extends Subsystem {
 
     // tells the left side that is should be inverted so that we drive straight with
     // each side having positive motor values.
-    rightFrontTalonSRX.setInverted(false); //3
-    rightRearTalonSRX.setInverted(false); //4
-    leftFrontTalonSRX.setInverted(true); //2
-    leftRearTalonSRX.setInverted(true); //1
-  
+    rightFrontTalonSRX.setInverted(false); // 3
+    rightRearTalonSRX.setInverted(false); // 4
+    leftFrontTalonSRX.setInverted(true); // 2
+    leftRearTalonSRX.setInverted(true); // 1
+
     // Config all talons
     DiffConfigTalons(rightFrontTalonSRX);
     DiffConfigTalons(rightRearTalonSRX);
     DiffConfigTalons(leftFrontTalonSRX);
     DiffConfigTalons(leftRearTalonSRX);
-
 
     /*
      * //use for Spark driving Spark leftFrontSpark = new
@@ -121,7 +122,7 @@ public class DiffDriveBase extends Subsystem {
     talon.configVoltageCompSaturation(12, 0);
 
     // invert the direction if necessary
-    //talon.setInverted(false);
+    // talon.setInverted(false);
   }
 
   @Override
@@ -135,13 +136,17 @@ public class DiffDriveBase extends Subsystem {
     differentialDrive.arcadeDrive(speed, rotation);
   }
 
-  public void dumpEncoderValues(){
-    //System.out.println("right motor val:" + rightRearTalonSRX.getSelectedSensorPosition());
-    //System.out.println("left motor val:" + leftRearTalonSRX.getSelectedSensorPosition());
+  public static void dumpEncoderValues() {
+     System.out.println("right motor val:" + rightRearTalonSRX.getSelectedSensorPosition());
+     System.out.println("left motor val:" + leftRearTalonSRX.getSelectedSensorPosition());
   }
 
-  public void stop(){
+  public void stop() {
     leftMotors.stopMotor();
     rightMotors.stopMotor();
+  }
+
+  public void zeroEncoders() {
+   
   }
 }

@@ -17,7 +17,7 @@ public class StopCompressor extends Command {
 
     @Override
     protected void execute() {
-        CompressorStart.stop();
+       // CompressorStart.stop();
     }
 
     @Override

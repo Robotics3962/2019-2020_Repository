@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 public class CompressorStart {
-
-  static Compressor c = Robot.c;
+/*
+  //static Compressor c = Robot.c;
 
     public CompressorStart() {
         super();
@@ -27,6 +27,7 @@ public class CompressorStart {
       
       
     }
+    */
 }
 
 
