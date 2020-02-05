@@ -6,6 +6,9 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.I2C;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -78,5 +81,13 @@ public class RobotMap {
 
   public static final double autonomousSSF = 0.5;
   public static final double autonomousRSF = 0.6;
+
+  //Spinner
+  public static final int S_MOTOR = SparkMotorId1;  
+  
+	public static final int S_PISTON = 0;
+	public static final int S_PISTON_PORT0 = 0;
+	public static final int S_PISTON_PORT1 = 1;
+	public static final I2C.Port S_COLOR_SENSOR = I2C.Port.kOnboard;
 
 }

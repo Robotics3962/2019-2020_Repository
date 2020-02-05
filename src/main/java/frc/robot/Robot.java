@@ -13,7 +13,6 @@ import edu.wpi.first.cameraserver.CameraServer;
 //misc
 import edu.wpi.first.wpilibj.TimedRobot;
 //compressor + solenoid
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 //timer libraries
@@ -28,8 +27,8 @@ import frc.robot.subsystems.DiffDriveBase;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 //limelight libraries
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.TimedRobot;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import oi.limelightvision.limelight.frc.LimeLight;
 //import oi.limelightvision.limelight.frc.ControlMode.*;
 
@@ -46,7 +45,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
   //public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
-
+ // private RobotContainer m_robotContainer;
   Command m_autonomousCommand; 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -126,7 +125,7 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
-
+   // m_robotContainer = RobotContainer.getInstance();
     
   }
 
