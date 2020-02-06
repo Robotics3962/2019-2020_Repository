@@ -64,6 +64,12 @@ public class Robot extends TimedRobot {
   double m_LimelightSteerCommand;
   boolean m_LimelightHasValidTarget;
 
+  //variables for the limelight
+  public static double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+  public static double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+  public static double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+  public static double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+
   // this is used to log output to the console
   public static void Log(String msg) {
     System.out.println(msg);
@@ -260,7 +266,7 @@ public class Robot extends TimedRobot {
 
     boolean activateLimelight = OI.operationJoyStick.getRawButton(1);
 
-    m_LimelightDriveCommand = DiffDriveBase.getLimelightSpeed();
+    m_LimelightDriveCommand = DiffDriveBase.getLimelightSpeed(0,0,0);//placeholders. substitute
     m_LimelightSteerCommand = DiffDriveBase.getLimelightSteer();
 
     if  (activateLimelight = true) {
