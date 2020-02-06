@@ -14,7 +14,9 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 //compressor + solenoid
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
+//import edu.wpi.first.wpilibj.Solenoid;
 //timer libraries
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,6 +25,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
+
 //gyro libraries
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
@@ -52,10 +55,16 @@ public class Robot extends TimedRobot {
   // subsystems
   public static DiffDriveBase diffDriveBase = null;
 
-  
-  Solenoid solenoid_1 = new Solenoid(1,2);// placeholder int
-  DoubleSolenoid anotherDoubleSolenoid = new DoubleSolenoid(5,1,2);
+  // DoubleSolenoid corresponds to a double solenoid.
+  private final DoubleSolenoid m_doubleSolenoid = new DoubleSolenoid(1, 2);
 
+  private static final int kSolenoidButton = 1;
+  private static final int kDoubleSolenoidForward = 2;
+  private static final int kDoubleSolenoidReverse = 3;
+  private final Joystick m_stick = new Joystick(0);
+
+    // Solenoid corresponds to a single solenoid.
+    private final Solenoid m_solenoid = new Solenoid(0);
 
   //cameras
   public static UsbCamera camera1;
@@ -111,7 +120,7 @@ public class Robot extends TimedRobot {
 
     // create all subsystems
     diffDriveBase = new DiffDriveBase();
-
+    
     // call control loop
     m_oi = new OI();
 
@@ -274,6 +283,18 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    m_solenoid.set(m_stick.getRawButton(kSolenoidButton));
+
+    /*
+     * In order to set the double solenoid, if just one button
+     * is pressed, set the solenoid to correspond to that button.
+     * If both are pressed, set the solenoid will be set to Forwards.
+     */
+    if (m_stick.getRawButton(kDoubleSolenoidForward)) {
+      m_doubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    } else if (m_stick.getRawButton(kDoubleSolenoidReverse)) {
+      m_doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    }
   }
 
   /**
