@@ -160,4 +160,17 @@ public class DiffDriveBase extends Subsystem {
   public void zeroEncoders() {
    
   }
+
+  public static double getLimelightSpeed(double a1, double a2, double h2) {
+    //tan(a1 + a2) = (h2 - h1)/distance
+    
+
+    return speed;
+  }
+
+  public static double getLimelightSteer() {
+    //use tx to keep "objective" centered
+
+    return steer;
+  }
 }

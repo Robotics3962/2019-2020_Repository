@@ -473,6 +473,8 @@ public class limelight {
         SnapshotModeEntry.setNumber(mode.getCodeValue());
     }
 
+    /*
+
     public static void retrieveLimelightData() {
 
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("<variablename>").getDouble(0);
@@ -481,8 +483,8 @@ public class limelight {
         *
         *
         */
-    }
-
+    //}
+/*
     public static void setLimelightCameraData() {
 
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("<variablename>").setNumber(DEFAULT_ANGLE_THRESHOLD);
@@ -498,6 +500,6 @@ public class limelight {
     public static void visionAim() {
 
     }
-    
+*/
 }
 

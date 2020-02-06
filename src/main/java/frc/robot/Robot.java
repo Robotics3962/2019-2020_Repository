@@ -10,7 +10,7 @@ package frc.robot;
 //camera libraries
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 //timer libraries
@@ -25,6 +25,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
 //gyro libraries
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import frc.robot.OI;
+import frc.robot.RobotMap;
 
 
 
@@ -56,6 +58,11 @@ public class Robot extends TimedRobot {
 
   //gyro
   static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
+  //used for limelight
+  double m_LimelightDriveCommand;
+  double m_LimelightSteerCommand;
+  boolean m_LimelightHasValidTarget;
 
   // this is used to log output to the console
   public static void Log(String msg) {
@@ -248,7 +255,30 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-  }
+
+    Update_Limelight_Tracking();
+
+    boolean activateLimelight = OI.operationJoyStick.getRawButton(1);
+
+    m_LimelightDriveCommand = DiffDriveBase.getLimelightSpeed();
+    m_LimelightSteerCommand = DiffDriveBase.getLimelightSteer();
+
+    if  (activateLimelight = true) {
+    
+      if (m_LimelightHasValidTarget) {
+
+        //m.Drive.arcadeDrive
+        //ourDrive.diffDrive(limedrive, limeSteer);
+        DiffDriveBase.setSpeedAndRotation(m_LimelightDriveCommand, m_LimelightSteerCommand);//test to see if i obeys our maxs and mins for speed or not
+      }
+
+      else if (!m_LimelightHasValidTarget) {
+        DiffDriveBase.setSpeedAndRotation(0.0, 0.0);
+        System.out.println("Either target not found or there is nothing to do");
+      }
+     }
+    }
+  
 
   /**
    * This function is called periodically during test mode.
@@ -261,5 +291,44 @@ public class Robot extends TimedRobot {
     // get angle(goes past 360)
     gyro.getAngle();
   }
+
+  public void Update_Limelight_Tracking() {
   
+        // These numbers must be tuned for your Robot!  Be careful!
+        final double STEER_K = 0.45;                    // how hard to turn toward the target
+        final double DRIVE_K = 0.45;                    // how hard to drive fwd toward the target
+        final double DESIRED_TARGET_AREA = 13.0;        // Area of the target when the robot reaches the wall
+        final double MAX_DRIVE = 0.7;                   // Simple speed limit so we don't drive too fast
+
+        double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+        double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+        double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+        double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+
+        if (tv < 1.0) {
+        
+          m_LimelightHasValidTarget = false; //either make or grab these variables
+          m_LimelightDriveCommand = 0.0;
+          m_LimelightSteerCommand = 0.0;
+          return;
+        }
+
+        m_LimelightHasValidTarget = true;
+
+        // Start with proportional steering
+        double steer_cmd = tx * STEER_K;
+        m_LimelightSteerCommand = steer_cmd;
+
+        // try to drive forward until the target area reaches our desired area
+        double drive_cmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
+
+        // don't let the robot drive too fast into the goal
+        if (drive_cmd > MAX_DRIVE)
+        {
+          drive_cmd = MAX_DRIVE;
+        }
+        m_LimelightDriveCommand = drive_cmd;
+  }
 }
+  
+

@@ -21,7 +21,7 @@ public class OI {
 
   // get both drive and operational joysticks
   Joystick driveJoystick = new Joystick(RobotMap.Joystick0Id);
-  Joystick operationJoyStick = new Joystick(RobotMap.Joystick1Id); 
+  public static Joystick operationJoyStick = new Joystick(RobotMap.Joystick1Id); 
 
   public OI() {     
 
