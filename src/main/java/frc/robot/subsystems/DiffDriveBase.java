@@ -16,6 +16,7 @@ import frc.robot.RobotMap;
 import frc.robot.commands.DiffDriveCommand;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
+import frc.robot.RobotMap;
 
 public class DiffDriveBase extends Subsystem {
 
@@ -163,14 +164,18 @@ public class DiffDriveBase extends Subsystem {
 
   public static double getLimelightSpeed(double a1, double a2, double h2) {
     //tan(a1 + a2) = (h2 - h1)/distance
-    
 
-    return speed;
+    double tanValue = java.lang.Math.tan(a1 + a2);
+    double htByDistance = (h2 - RobotMap.robotHeight);
+
+    double d = tanValue/htByDistance;
+
+      return d;
   }
 
   public static double getLimelightSteer() {
-    //use tx to keep "objective" centered
+    //use tx to keep "objective" centered. Base formula around this if we can't find one
 
-    return steer;
+    return 0;//steer;
   }
 }
