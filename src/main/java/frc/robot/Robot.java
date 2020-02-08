@@ -264,7 +264,7 @@ public class Robot extends TimedRobot {
 
     Update_Limelight_Tracking();
 
-    boolean activateLimelight = OI.operationJoyStick.getRawButton(1);
+    boolean activateLimelight = OI.operationJoystick.getRawButton(1);
 
     m_LimelightDriveCommand = DiffDriveBase.getLimelightSpeed(0,0,0);//placeholders. substitute
     m_LimelightSteerCommand = DiffDriveBase.getLimelightSteer();
