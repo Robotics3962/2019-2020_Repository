@@ -27,7 +27,7 @@ public class PrintEncoderValues extends Command {
     @Override
     public void execute() {
 
-        DiffDriveBase.dumpEncoderValues();
+        //DiffDriveBase.dumpEncoderValues();
     }
 
 }

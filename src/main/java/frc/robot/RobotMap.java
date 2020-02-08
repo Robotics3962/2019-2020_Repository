@@ -90,5 +90,5 @@ public class RobotMap {
   public static final double autonomousSSF = 0.5;
   public static final double autonomousRSF = 0.6;
 
-  public static DoubleSolenoid spinnerSolenoid = new DoubleSolenoid(0,0,0); //placeholders.  values to plug are as such(int ModuleNumber, int fowrdChannel, int reverseChannel)
+  public static DoubleSolenoid spinnerSolenoid = new DoubleSolenoid(1,2); //placeholders.  values to plug are as such(int ModuleNumber, int fowrdChannel, int reverseChannel)
 }

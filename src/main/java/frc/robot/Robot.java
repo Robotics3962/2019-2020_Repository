@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
+import frc.robot.subsystems.SolenoidBaseSubsystem;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 //limelight libraries
@@ -52,10 +53,11 @@ public class Robot extends TimedRobot {
 
   // subsystems
   public static DiffDriveBase diffDriveBase = null;
+  public static SolenoidBaseSubsystem solenoidBase = null;
 
   
-  Solenoid solenoid_1 = new Solenoid(1,2);// placeholder int
-  DoubleSolenoid anotherDoubleSolenoid = new DoubleSolenoid(5,1,2);
+  //Solenoid solenoid_1 = new Solenoid(1,2);// placeholder int
+  //DoubleSolenoid anotherDoubleSolenoid = new DoubleSolenoid(5,1,2);
 
 
   //cameras
@@ -112,6 +114,8 @@ public class Robot extends TimedRobot {
 
     // create all subsystems
     diffDriveBase = new DiffDriveBase();
+    solenoidBase = new SolenoidBaseSubsystem();
+
 
     // call control loop
     m_oi = new OI();
@@ -275,7 +279,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    diffDriveBase.dumpEncoderValues();
+    //diffDriveBase.dumpEncoderValues();
 
   }
 

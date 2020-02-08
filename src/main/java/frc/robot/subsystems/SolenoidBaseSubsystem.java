@@ -1,15 +1,11 @@
 package frc.robot.subsystems;
+
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 // currently using placeholder vaules
 
 public class SolenoidBaseSubsystem extends Subsystem {
-
-    private static final int kDoubleSolenoidForward = 1;
-    private static final int kDoubleSolenoidReverse = 2;
-    // values are not official
-
 
     public static void solenoidForward() {
 
