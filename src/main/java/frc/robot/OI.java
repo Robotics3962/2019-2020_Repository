@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class OI {
 
   // get both drive and operational joysticks
-  Joystick driveJoystick = new Joystick(RobotMap.Joystick0Id);
+  public static Joystick driveJoystick = new Joystick(RobotMap.Joystick0Id);
   public static Joystick operationJoystick = new Joystick(RobotMap.Joystick1Id); 
 
   public OI() {     
@@ -30,6 +30,7 @@ public class OI {
     //left to show as example
     //JoystickButton driveButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonA);
     JoystickButton opDriveButtonA = new JoystickButton(operationJoystick, RobotMap.JoystickButtonA);
+    
     
     
     // map buttons to commands on the joystick that drives the robot

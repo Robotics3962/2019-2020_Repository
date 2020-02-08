@@ -23,11 +23,15 @@ public class RobotMap {
   public static final int SparkMotorId1 = 5;
   public static final int SparkMotorId2 = 6;
 
-  // these are CAN bus ids
-  public static final int TalonDriveLeftFront = 2; //2
-  public static final int TalonDriveLeftBack = 1; //1
-  public static final int TalonDriveRightFront = 3; //3
-  public static final int TalonDriveRightRear = 4;
+// these are CAN bus ids for the test comp robot
+//  right back is 1
+//  right front is 4
+//  left front 2
+//  left back 3
+  public static final int TalonDriveLeftFront = 2; 
+  public static final int TalonDriveLeftBack = 3; 
+  public static final int TalonDriveRightFront = 4;
+  public static final int TalonDriveRightRear = 1;
   public static final double TalonMinOutput = -0.25;
   public static final double TalonMaxOutput = 0.3;
 
@@ -74,7 +78,7 @@ public class RobotMap {
   // (value < 1) the max and min speed the joystick
   // moves the robot  
   public static final double SpeedScaleFactor = 0.85;
-  public static final double RotationScaleFactor = 0.77;
+  public static final double RotationScaleFactor = .77;//speed for limelight:0.44;
 
   public static final double autonomousSSF = 0.5;
   public static final double autonomousRSF = 0.6;

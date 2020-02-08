@@ -12,6 +12,8 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DiffDriveBase;
 import java.lang.Math;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.OI;
 
 public class DiffDriveCommand extends Command {
   double driveValue;
@@ -40,7 +42,34 @@ public class DiffDriveCommand extends Command {
     scaledRotation = rotation * RobotMap.RotationScaleFactor;
     // scaledSpeed = scaleValue(speed, RobotMap.SpeedScaleFactor);
     // scaledRotation = scaleValue(rotation, RobotMap.RotationScaleFactor);
+    double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+    double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+    double deadZoneX = 2.5;
+    double deadZoneY = .5;
+    double targetX = 0;
+    double targetY = -11;
 
+    if (OI.driveJoystick.getRawButton(1)){
+      System.out.println("tx: " + tx + "ty: " + ty);
+
+      if (tx < (targetX - deadZoneX)){
+          scaledRotation = .5;
+          scaledSpeed = 0;
+        }
+      else if (tx > (targetX + deadZoneX)){
+        scaledRotation = -.5;
+        scaledSpeed = 0;
+      }
+      else if (ty < (targetY - deadZoneY)){
+        scaledSpeed = -0.45;
+        scaledRotation = 0;
+      }
+      else if (ty > (targetY + deadZoneY)){
+        scaledSpeed = 0.45;
+        scaledRotation = 0;
+      }
+    }
+    
     DiffDriveBase.setSpeedAndRotation(scaledRotation, scaledSpeed);// orig Scaledspeed, ScaledRotation
   }
 

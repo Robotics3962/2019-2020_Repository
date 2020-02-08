@@ -150,8 +150,8 @@ public class DiffDriveBase extends Subsystem {
   }
 
   public static void dumpEncoderValues() {
-     System.out.println("right motor val:" + rightRearTalonSRX.getSelectedSensorPosition());
-     System.out.println("left motor val:" + leftRearTalonSRX.getSelectedSensorPosition());
+    // System.out.println("right motor val:" + rightRearTalonSRX.getSelectedSensorPosition());
+    // System.out.println("left motor val:" + leftRearTalonSRX.getSelectedSensorPosition());
   }
 
   public void stop() {

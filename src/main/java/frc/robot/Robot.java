@@ -262,7 +262,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    System.out.println("Tx: "+ tx+"   ty:"+ty+"   tv:"+tv+"   ta:"+ta);
+    //System.out.println("Tx: "+ tx+"   ty:"+ty+"   tv:"+tv+"   ta:"+ta);
     
     Update_Limelight_Tracking();
 
@@ -271,7 +271,7 @@ public class Robot extends TimedRobot {
     m_LimelightDriveCommand = DiffDriveBase.getLimelightSpeed(0,0,0);//placeholders. substitute
     m_LimelightSteerCommand = DiffDriveBase.getLimelightSteer();
 
-    if  (activateLimelight = true) {
+    if  (activateLimelight) {
     
       if (m_LimelightHasValidTarget) {
 
