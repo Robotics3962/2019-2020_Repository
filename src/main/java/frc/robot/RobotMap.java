@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -88,4 +90,5 @@ public class RobotMap {
   public static final double autonomousSSF = 0.5;
   public static final double autonomousRSF = 0.6;
 
+  public static DoubleSolenoid spinnerSolenoid = new DoubleSolenoid(0,0,0); //placeholders.  values to plug are as such(int ModuleNumber, int fowrdChannel, int reverseChannel)
 }
