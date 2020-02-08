@@ -7,10 +7,12 @@
 
 package frc.robot;
 
-
-
 import edu.wpi.first.wpilibj.Joystick;
-//import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.DeploySpinner;
+import frc.robot.commands.DiffDriveCommand;
+import frc.robot.commands.ManualRetractSpinner;
+import frc.robot.commands.RetractSpinner;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,28 +22,33 @@ public class OI {
 
   // get both drive and operational joysticks
   Joystick driveJoystick = new Joystick(RobotMap.Joystick0Id);
-  Joystick operationJoyStick = new Joystick(RobotMap.Joystick1Id); 
+  Joystick operationJoyStick = new Joystick(RobotMap.Joystick1Id);
 
-  public OI() {     
+  public OI() {
 
     // get the buttons on the drive joystick
-    //left to show as example
-    //JoystickButton driveButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonA);
-    
+    // left to show as example
+    // JoystickButton driveButtonA = new JoystickButton(driveJoystick,
+    // RobotMap.JoystickButtonA);
+
     // map buttons to commands on the joystick that drives the robot
-    
-    
 
     // second joystick I'm calling it operational - no command mapping yet
-    //JoystickButton opButtonA = new JoystickButton(operationJoyStick, RobotMap.JoystickButtonA);
-    
+    // JoystickButton opButtonA = new JoystickButton(operationJoyStick,
+    // RobotMap.JoystickButtonA);
+
+    JoystickButton dDeploySpinnerButton = new JoystickButton(driveJoystick, RobotMap.JoystickButtonY);
+    JoystickButton opButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonB);
+    JoystickButton dRetractSpinnerButton = new JoystickButton(driveJoystick, RobotMap.JoystickButtonX);
 
     // the left thumb stick controls the wrist
     // the right thumb stick control the arm
-    //-----------------------------------------------
-    //not deleted as to show as example
-   // opButtonA.whenPressed(new LockWristCmd());
+    // -----------------------------------------------
+    // not deleted as to show as example
+    // opButtonA.whenPressed(new LockWristCmd());
 
+    dDeploySpinnerButton.whenPressed(new ManualRetractSpinner());
+    dRetractSpinnerButton.whenPressed(new RetractSpinner());
   }
 
   

@@ -6,21 +6,21 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;  
 import frc.robot.subsystems.Spinner;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import frc.robot.TestingDashboard;
 
-public class DeploySpinner extends CommandBase {
+public class DeploySpinner extends edu.wpi.first.wpilibj.command.Command {
   Spinner m_spinner;
   boolean m_finished = false;
   DoubleSolenoid m_piston;
   
   public DeploySpinner() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Spinner.getInstance());
+   // addRequirements(Spinner.getInstance());
     m_spinner = Spinner.getInstance();
     m_piston = m_spinner.getPiston();
   }
@@ -28,14 +28,16 @@ public class DeploySpinner extends CommandBase {
   public static void registerWithTestingDashboard() {
     Spinner spinner = Spinner.getInstance();
     DeploySpinner cmd = new DeploySpinner();
-    TestingDashboard.getInstance().registerCommand(spinner, "Basic", cmd);
+    //TestingDashboard.getInstance().registerCommand(spinner, "Basic", cmd);
   }
-  // Called when the command is initially scheduled.
+
   @Override
-  public void initialize() {
-    m_piston.set(DoubleSolenoid.Value.kForward);
-    m_finished = false;
+  protected boolean isFinished() {
+    // TODO Auto-generated method stub
+    return false;
   }
+
+  
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -46,15 +48,21 @@ public class DeploySpinner extends CommandBase {
     }  
   }
 
+
+  
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end() {
     m_piston.set(DoubleSolenoid.Value.kOff); 
   }
+  
 
+  /*
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return m_finished;
   }
+
+  */
 }
