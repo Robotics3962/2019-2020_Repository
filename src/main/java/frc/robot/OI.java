@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.DeploySpinner;
 import frc.robot.commands.DiffDriveCommand;
-import frc.robot.commands.ManualRetractSpinner;
 import frc.robot.commands.RetractSpinner;
 
 /**
@@ -38,7 +37,6 @@ public class OI {
     // RobotMap.JoystickButtonA);
 
     JoystickButton dDeploySpinnerButton = new JoystickButton(driveJoystick, RobotMap.JoystickButtonY);
-    JoystickButton opButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonB);
     JoystickButton dRetractSpinnerButton = new JoystickButton(driveJoystick, RobotMap.JoystickButtonX);
 
     // the left thumb stick controls the wrist
@@ -47,7 +45,7 @@ public class OI {
     // not deleted as to show as example
     // opButtonA.whenPressed(new LockWristCmd());
 
-    dDeploySpinnerButton.whenPressed(new ManualRetractSpinner());
+    dDeploySpinnerButton.whenPressed(new DeploySpinner());
     dRetractSpinnerButton.whenPressed(new RetractSpinner());
   }
 
