@@ -197,9 +197,7 @@ public class DiffDriveBase extends Subsystem {
       
 
     }
-   
-
-
+    
     return steerAdjust;//steer;
   }
 }

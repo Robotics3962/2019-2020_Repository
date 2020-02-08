@@ -262,6 +262,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
+    System.out.println("Tx: "+ tx+"   ty:"+ty+"   tv:"+tv+"   ta:"+ta);
+    
     Update_Limelight_Tracking();
 
     boolean activateLimelight = OI.operationJoystick.getRawButton(1);
@@ -275,7 +277,7 @@ public class Robot extends TimedRobot {
 
         //m.Drive.arcadeDrive
         //ourDrive.diffDrive(limedrive, limeSteer);
-        DiffDriveBase.setSpeedAndRotation(m_LimelightDriveCommand, m_LimelightSteerCommand);//test to see if i obeys our maxs and mins for speed or not
+        //DiffDriveBase.setSpeedAndRotation(m_LimelightDriveCommand, m_LimelightSteerCommand);//test to see if i obeys our maxs and mins for speed or not
       }
 
       else if (!m_LimelightHasValidTarget) {
