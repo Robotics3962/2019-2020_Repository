@@ -6,38 +6,39 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandBase;  
+
+//import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Spinner;
+//import java.lang.module.ModuleDescriptor.Requires;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import frc.robot.Robot;
+//import frc.robot.TestingDashboard;
 
-import frc.robot.TestingDashboard;
-
-public class DeploySpinner extends edu.wpi.first.wpilibj.command.Command {
+public class DeploySpinner extends CommandBase {
   Spinner m_spinner;
   boolean m_finished = false;
   DoubleSolenoid m_piston;
   
   public DeploySpinner() {
+    //addRequirements(Robot.spinner);
     // Use addRequirements() here to declare subsystem dependencies.
    // addRequirements(Spinner.getInstance());
     m_spinner = Spinner.getInstance();
     m_piston = m_spinner.getPiston();
   }
 
-  public static void registerWithTestingDashboard() {
-    Spinner spinner = Spinner.getInstance();
-    DeploySpinner cmd = new DeploySpinner();
+  //public static void registerWithTestingDashboard() {
+ //  Spinner spinner = Spinner.getInstance();
+ //   DeploySpinner cmd = new DeploySpinner();
     //TestingDashboard.getInstance().registerCommand(spinner, "Basic", cmd);
-  }
+ // }
 
-  @Override
-  protected boolean isFinished() {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  
+ 
+// Called when the command is initially scheduled.
+@Override
+public void initialize() {
+}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -49,20 +50,16 @@ public class DeploySpinner extends edu.wpi.first.wpilibj.command.Command {
   }
 
 
-  
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end() {
-    m_piston.set(DoubleSolenoid.Value.kOff); 
-  }
-  
-
-  /*
+// Called once the command ends or is interrupted.
+@Override
+public void end(boolean interrupted) {
+  m_piston.set(DoubleSolenoid.Value.kOff); 
+}
+   
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_finished;
+    return false;
   }
 
-  */
 }

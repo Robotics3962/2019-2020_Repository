@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.TestingDashboard;
+//import frc.robot.TestingDashboard;
 import frc.robot.subsystems.Spinner;
 
 public class SpinSpinner3Times extends CommandBase {
@@ -30,11 +30,11 @@ public class SpinSpinner3Times extends CommandBase {
     m_counter = 0;
   }
 
-  public static void registerWithTestingDashboard() {
-    Spinner spinner = Spinner.getInstance();
-    SpinSpinner3Times cmd = new SpinSpinner3Times();
-    TestingDashboard.getInstance().registerCommand(spinner, "Basic", cmd);
-  }
+  //public static void registerWithTestingDashboard() {
+  //  Spinner spinner = Spinner.getInstance();
+  //  SpinSpinner3Times cmd = new SpinSpinner3Times();
+    //TestingDashboard.getInstance().registerCommand(spinner, "Basic", cmd);
+  //}
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {

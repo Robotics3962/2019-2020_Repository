@@ -7,12 +7,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+//import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Spinner;
 
-import frc.robot.TestingDashboard;
+//import frc.robot.TestingDashboard;
 
 public class RetractSpinner extends Command {
   Spinner m_spinner;
@@ -25,11 +25,11 @@ public class RetractSpinner extends Command {
     m_piston = m_spinner.getPiston();
   }
 
-  public static void registerWithTestingDashboard() {
-    Spinner spinner = Spinner.getInstance();
-    RetractSpinner cmd = new RetractSpinner();
+ // public static void registerWithTestingDashboard() {
+ //   Spinner spinner = Spinner.getInstance();
+ //   RetractSpinner cmd = new RetractSpinner();
    // TestingDashboard.getInstance().registerCommand(spinner, "Basic", cmd);
-  }
+ // }
 
   // Called when the command is initially scheduled.
   @Override
@@ -48,13 +48,13 @@ public class RetractSpinner extends Command {
   }
 
 
-  /*
+  
   // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    m_piston.set(DoubleSolenoid.Value.kOff); 
-  }
-  */
+//@Override
+//public void end(boolean interrupted) {
+// m_piston.set(DoubleSolenoid.Value.kOff); 
+//}
+  
 
   // Returns true when the command should end.
   @Override

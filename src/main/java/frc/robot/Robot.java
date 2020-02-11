@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DiffDriveBase;
-
+import frc.robot.subsystems.Spinner;
 //gyro libraries
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
@@ -47,7 +47,9 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
  */
 public class Robot extends TimedRobot {
   //public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static Spinner spinner = new Spinner();
   public static OI m_oi;
+  
  // private RobotContainer m_robotContainer;
   Command m_autonomousCommand; 
   SendableChooser<Command> m_chooser = new SendableChooser<>();

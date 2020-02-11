@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.TestingDashboard;
+import frc.robot.commands.DeploySpinner;
 
 public class Spinner extends SubsystemBase {
   public static Spinner spinner; 
@@ -86,5 +87,6 @@ public class Spinner extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    setDefaultCommand(new DeploySpinner());
   }
 }

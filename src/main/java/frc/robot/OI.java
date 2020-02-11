@@ -10,8 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.DeploySpinner;
-import frc.robot.commands.DiffDriveCommand;
 import frc.robot.commands.RetractSpinner;
+import frc.robot.commands.DiffDriveCommand;
+import frc.robot.subsystems.Spinner;
+//import frc.robot.commands.RetractSpinner;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -22,6 +24,11 @@ public class OI {
   // get both drive and operational joysticks
   Joystick driveJoystick = new Joystick(RobotMap.Joystick0Id);
   Joystick operationJoyStick = new Joystick(RobotMap.Joystick1Id);
+
+
+  public double GetDriverRawAxis (int axis){
+    return driveJoystick.getRawAxis(axis);
+  }
 
   public OI() {
 
@@ -36,20 +43,20 @@ public class OI {
     // JoystickButton opButtonA = new JoystickButton(operationJoyStick,
     // RobotMap.JoystickButtonA);
 
-    JoystickButton dDeploySpinnerButton = new JoystickButton(driveJoystick, RobotMap.JoystickButtonY);
-    JoystickButton dRetractSpinnerButton = new JoystickButton(driveJoystick, RobotMap.JoystickButtonX);
+     // get the buttons on the drive joystick
 
-    // the left thumb stick controls the wrist
-    // the right thumb stick control the arm
+     JoystickButton driveButtonA = new JoystickButton(driveJoystick, RobotMap.JoystickButtonA);
+     JoystickButton driveButtonB = new JoystickButton(driveJoystick, RobotMap.JoystickButtonB);
+     //JoystickButton driveButtonX = new JoystickButton(driveJoystick, RobotMap.JoystickButtonX);
+     //JoystickButton driveButtonY = new JoystickButton(driveJoystick, RobotMap.JoystickButtonY);
+
+     
     // -----------------------------------------------
-    // not deleted as to show as example
-    // opButtonA.whenPressed(new LockWristCmd());
-
-    dDeploySpinnerButton.whenPressed(new DeploySpinner());
-    dRetractSpinnerButton.whenPressed(new RetractSpinner());
-  }
 
   
+    driveButtonA.whenPressed(new DeploySpinner());
+    driveButtonB.whenPressed(new RetractSpinner());
+}
   
   public double getLeftThrottle() {
 		return driveJoystick.getY(); // Laika needs negative, Belka is positive
