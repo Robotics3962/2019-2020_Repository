@@ -47,13 +47,19 @@ public class RetractSpinner extends Command {
     }
   }
 
+  
+  protected void interrupted() {
+    // TODO Auto-generated method stub
+  end();
+  }
+
 
   
   // Called once the command ends or is interrupted.
-//@Override
-//public void end(boolean interrupted) {
-// m_piston.set(DoubleSolenoid.Value.kOff); 
-//}
+  @Override
+  public void end() {
+    m_piston.set(DoubleSolenoid.Value.kOff); 
+  }
   
 
   // Returns true when the command should end.

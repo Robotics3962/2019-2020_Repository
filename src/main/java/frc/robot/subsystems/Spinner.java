@@ -16,12 +16,12 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.TestingDashboard;
 import frc.robot.commands.DeploySpinner;
 
-public class Spinner extends SubsystemBase {
+public class Spinner extends Subsystem {
   public static Spinner spinner; 
   private Spark m_motor;
   private Compressor m_compressor;
@@ -52,7 +52,7 @@ public class Spinner extends SubsystemBase {
   public static Spinner getInstance() {
     if (spinner == null) {
       spinner = new Spinner();
-      TestingDashboard.getInstance().registerSubsystem(spinner, "Spinner");
+      //TestingDashboard.getInstance().registerSubsystem(spinner, "Spinner");
     }
     return spinner;
   }
@@ -84,9 +84,12 @@ public class Spinner extends SubsystemBase {
 		return m_piston;
   }
   
+
+  /*
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     setDefaultCommand(new DeploySpinner());
   }
+  */
 }
